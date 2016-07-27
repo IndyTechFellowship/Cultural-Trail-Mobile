@@ -8,8 +8,11 @@ import {
   ScrollView
 } from 'react-native';
 
+import ActionButton from 'react-native-action-button';
+
 import IssueCard from './IssueCard.js';
 import AndroidToolbar from './AndroidToolbar.js';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 var fakeData = require('./../data/data.json');
 var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -31,6 +34,10 @@ export default class App extends Component {
 					style={styles.listview}
 					dataSource={this.state.data}
 					renderRow={this._renderRow} />
+				<ActionButton
+  					buttonColor="#98B82A"
+  					onPress={() => { console.log("hi")}}
+				/>
 			</View>
 		)
 	}
@@ -50,5 +57,10 @@ var styles = StyleSheet.create({
 	},
 	listview: {
 		height: 600
-	}
+	},
+	actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+  },
 });
