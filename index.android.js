@@ -1,34 +1,27 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator
 } from 'react-native';
 
-import App from './src/components/App.js';
+import IssuesScene from './src/components/IssuesScene.js';
+import LoginScene from './src/components/Login.js';
 
 class CulturalTrail extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <App />
-      </View>
-    );
-  }
+    render() {
+      return (
+        <Navigator
+          initialRoute={{ title: 'Awesome Scene', index: 0 }}
+          renderScene={(route, navigator) =>
+            <LoginScene />
+          }
+        />
+      )
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 0,
-    backgroundColor: '#F5FCFF',
-  },
-});
 
 AppRegistry.registerComponent('CulturalTrail', () => CulturalTrail);

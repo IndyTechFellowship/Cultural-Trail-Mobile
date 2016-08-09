@@ -1,11 +1,12 @@
+
 import React, { Component } from 'react';
+
 import {
+  AppRegistry,
   StyleSheet,
   Text,
   View,
-  ToolbarAndroid, 
-  ListView,
-  ScrollView
+  ListView
 } from 'react-native';
 
 import ActionButton from 'react-native-action-button';
@@ -14,11 +15,10 @@ import IssueCard from './IssueCard.js';
 import AndroidToolbar from './AndroidToolbar.js';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-var fakeData = require('./../data/data.json');
-var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+let fakeData = require('./../data/data.json');
+let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-export default class App extends Component {
-
+export default class IssuesScene extends Component {
 	constructor(props){
 		super(props);
 		this.state = {

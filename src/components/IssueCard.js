@@ -10,10 +10,6 @@ import {
 
 import { Card, Button, Divider } from 'react-native-material-design';
 
-var imgSrc = require('./../images/welcome.jpeg');
-
-import ImgSrc from './../images/welcome.jpeg';
-
 export default class IssueCard extends Component {
 	render(){
 		return (

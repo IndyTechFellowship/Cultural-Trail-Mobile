@@ -7,7 +7,7 @@
 - Use node
   - `npm install`
 - Install the React Native CLI
-  - `npm install -g react-native-cli`
+  - `sudo npm install -g react-native-cli`
 - Run for Android/iOS
   - `react-native run-android`
   - `react-native run-ios`
