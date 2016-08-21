@@ -6,9 +6,17 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.15.0",
+    "native-base": "^0.5.5",
     "react": "15.2.1",
     "react-native": "^0.30.0",
     "react-native-action-button": "^1.1.11",
-    "react-native-material-design": "^0.3.6"
+    "react-native-keyboard-aware-scroll-view": "^0.1.2",
+    "react-native-material-design": "^0.3.7",
+    "react-native-router-flux": "^3.35.0",
+    "react-native-simple-store": "^1.0.1",
+    "react-redux": "^4.4.5",
+    "redux-form": "^6.0.0-rc.4"
   }
 }

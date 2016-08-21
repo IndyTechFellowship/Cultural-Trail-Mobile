@@ -10,7 +10,8 @@ import {
 	KeyboardAvoidingView,
 } from 'react-native';
 
-import { Container, Content, Button, Tabs} from 'native-base';
+import _ from 'lodash'
+import { Container, Content, Button, Tabs, Input, List, ListItem} from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {reduxForm, Field} from 'redux-form'
 
@@ -63,34 +64,29 @@ class RenderResponse extends React.Component {
   }
 }
 
-class LoginForm extends Component {
-
+class RegisterForm extends Component {
 	render(){
 		return(
-			<View>
+			<View style={styles.formContainer}>
 				<KeyboardAvoidingView>
-					<Field name="email" component={renderInput} type="text" />
-					<Field name="password" component={renderInput} type="text" />
+          <Field name="name" component={renderInput} type="text" />
+          <Field name="email" component={renderInput} type="text" />
+          <Field name="password" component={renderInput} type="text" />
+          <Field name="passwordConfirm" component={renderInput} type="text" />
 			</KeyboardAvoidingView>
-			<View style={styles.buttonContainer}>
-					<Button style={styles.loginButtonStyle} onPress={this.props.handleSubmit}>
-					Login
-				</Button>
-				<Button style={styles.registerButtonStyle} onPress={this.props.onShowRegisterButtonClicked}>
-					Register
-				</Button>
+
+        <View style={{flex:1, flexDirection:'row', justifyContent:'center'}}>
+  				<Button style={styles.registerButtonStyle} onPress={this.props.handleSubmit}>
+  					Register
+  				</Button>
+        </View>
+        <RenderResponse response={this.props.registerResponse} />
 			</View>
-		</View>
 		)
 	}
 }
 
-LoginForm = reduxForm({
-  form: 'RegisterForm',
-})(LoginForm)
-
-export default class LoginScene extends Component {
-
+export default class RegisterScene extends Component {
 	render(){
 		return (
 			<Container theme={myTheme}>
@@ -101,7 +97,7 @@ export default class LoginScene extends Component {
 	          source={require('../images/ict-logo.png')}
 	        />
 
-				<LoginForm onShowRegisterButtonClicked={this.props.onShowRegisterButtonClicked} onSubmit={values => {this.props.submitLogin(values)}} registerResponse={this.props.loginResponse}/>
+        <RegisterForm onSubmit={values => {this.props.submitRegister(values)}} registerResponse={this.props.registerResponse}/>
 
 				</View>
 			</Container>
@@ -109,11 +105,40 @@ export default class LoginScene extends Component {
 	}
 }
 
-LoginScene.propTypes = {
-	showRegister: React.PropTypes.bool.isRequired,
-	onShowRegisterButtonClicked: React.PropTypes.func.isRequired,
-	submitLogin: React.PropTypes.func.isRequired,
-	loginResponse: React.PropTypes.object
+const validate = values => {
+  const errors = {}
+
+  if (!values.email) {
+    errors.email = 'Required'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address'
+  }
+
+  if(!values.password) {
+    errors.password = 'Required'
+  } else if(values.password.length < 5) {
+    errors.password = 'must me more then 5 characters'
+  }
+
+  if(!values.name) {
+    errors.name = 'Required'
+  }
+
+  if(!values.passwordConfirm) {
+    errors.passwordConfirm = 'Required'
+  } else if(values.password !== values.passwordConfirm) {
+    errors.passwordConfirm = 'password fields must be the same'
+  }
+  return errors
+}
+
+RegisterForm = reduxForm({
+  form: 'RegisterForm',
+})(RegisterForm)
+
+RegisterScene.propTypes = {
+	submitRegister: React.PropTypes.func.isRequired,
+  registerResponse: React.PropTypes.object
 };
 
 const styles = StyleSheet.create({
@@ -141,16 +166,13 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 
-	loginButtonStyle: {
-		backgroundColor: '#014C7F',
-		width:175,
-		right:10,
-	},
+  formContainer: {
+  },
 
 	registerButtonStyle: {
+    top:60,
+    width:350,
 		backgroundColor: '#A2C02F',
-		width:175,
-		left:10
 	}
 
 })

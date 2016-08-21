@@ -14,6 +14,7 @@ import ActionButton from 'react-native-action-button';
 import IssueCard from './IssueCard.js';
 import AndroidToolbar from './AndroidToolbar.js';
 import Icon from 'react-native-vector-icons/Ionicons';
+import storage from 'react-native-simple-store';
 
 let fakeData = require('./../data/data.json');
 let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -21,31 +22,45 @@ let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 export default class IssuesScene extends Component {
 	constructor(props){
 		super(props);
+    if(props.issuesResponse === null){
+      props.getIssues()
+    }
+    /*
 		this.state = {
-			data: ds.cloneWithRows(fakeData)
+			data: ds.cloneWithRows(this.props.issuesResponse.data)
 		};
+    */
 	}
 
 	render(){
-		return (
-			<View style={styles.container}>
-				<AndroidToolbar />
-				<ListView
-					style={styles.listview}
-					dataSource={this.state.data}
-					renderRow={this._renderRow} />
-				<ActionButton
-  					buttonColor="#98B82A"
-  					onPress={() => { console.log("hi")}}
-				/>
-			</View>
-		)
+    const hasIssues = this.props.issuesResponse !== null
+    if(hasIssues) {
+      return (
+        <View style={styles.container}>
+          <AndroidToolbar />
+          <ListView
+            style={styles.listview}
+            dataSource={ds.cloneWithRows(this.props.issuesResponse.data)}
+            renderRow={this._renderRow} />
+          <ActionButton
+              buttonColor="#98B82A"
+              onPress={() => { console.log("hi")}}
+          />
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.container}>
+          <AndroidToolbar />
+        </View>
+      )
+    }
 	}
 
 	_renderRow(rowData){
 		return (
 			<View>
-				<IssueCard cardImage={rowData.picture} issueTitle={rowData.name} issueDescription={rowData.about} issueAddress={rowData.address} />
+				<IssueCard cardImage="http://placehold.it/350x150" issueTitle={rowData.name} issueDescription={rowData.description} issueAddress="Something" />
 			</View>
 		)
 	}
