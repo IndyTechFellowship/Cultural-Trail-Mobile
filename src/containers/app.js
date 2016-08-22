@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import * as reducers from '../reducers';
-import CulturalTrail from '../components/CulturalTrail';
+import CulturalTrail from '../containers/CulturalTrailContainer';
 
 import { reducer as formReducer } from 'redux-form'
 

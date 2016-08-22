@@ -2,7 +2,8 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   showRegister: false,
-  loginResponse: null
+  loginResponse: null,
+  authToken: null
 };
 
 export default function counter(state = initialState, action = {}) {
@@ -17,7 +18,14 @@ export default function counter(state = initialState, action = {}) {
       return {
         ...state,
         loginResponse: action.payload
-      }
+      };
+
+    case types.RECEIVE_AUTH_TOKEN:
+    console.log('receive2')
+      return {
+        ...state,
+        authToken: action.payload
+      };
 
     default:
       return state;
