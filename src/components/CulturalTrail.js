@@ -14,9 +14,26 @@ import {Actions, Scene, Router, Switch} from 'react-native-router-flux'
 import IssuesContainer from '../containers/IssuesContainer'
 import LoginScene from '../containers/LoginContainer'
 import RegisterScene from '../containers/RegisterContainer'
+import SplashScreenScene from '../containers/SplashScreenContainer'
 import {doAuthToken, receiveAuthToken} from '../actions/loginActions'
 
 import storage from 'react-native-simple-store';
+
+/*
+<Scene
+  key="root"
+  component={connect(state=>({profile:state.loginReducer.authToken}))(Switch)}
+  tabs={true}
+  unmountScenes
+  selector={(props)=> {console.log(props); return props.profile ? "issues" : "splash"}}
+  >
+  <Scene key="login" component={LoginScene} title="Login" hideNavBar={true}/>
+  <Scene key="issues" component={IssuesContainer} title="Issues" hideNavBar={true}/>
+  <Scene key="splash" component={SplashScreenScene} tile="Splash" hideNavBar={true}/>
+</Scene>
+
+
+*/
 
 export default class CulturalTrail extends Component {
 
@@ -25,19 +42,12 @@ export default class CulturalTrail extends Component {
     }
 
     render() {
-      this.props.getAuthToken()
+      //this.props.getAuthToken()
       return (
         <Router>
-          <Scene
-            key="root"
-            component={connect(state=>({profile:state.loginReducer.authToken}))(Switch)}
-            tabs={true}
-            unmountScenes
-            selector={(props)=> {console.log(props); return props.profile ? "issues" : "login"}}
-            >
-            <Scene key="login" component={LoginScene} title="Login" inital={true} hideNavBar={true}/>
-            <Scene key="issues" component={IssuesContainer} title="Issues" hideNavBar={true}/>
-          </Scene>
+          <Scene key="login" component={LoginScene} title="Login" hideNavBar={true}/>
+          <Scene key="issues" component={IssuesContainer} title="Issues" hideNavBar={true}/>
+          <Scene key="splash" component={SplashScreenScene} tile="Splash" initial={true} hideNavBar={true}/>
           <Scene key="register" component={RegisterScene} hideNavBar={true}/>
         </Router>
       )

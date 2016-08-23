@@ -12,10 +12,8 @@ export const receiveGetIssuesResponse = (issueResponse) => {
 }
 
 export const getIssues = () => {
-  console.log('api')
   var myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
-  //myHeaders.append('api-token', 'Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4fQ.4tCa3NnBBkvUTVS25Va89Q1ftXueFDtOe7pbgOCYzQU')
   storage.get('token').then(token => myHeaders.append('api-token', `Token: ${token}`))
   return (dispatch) => {
 
