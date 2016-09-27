@@ -11,11 +11,6 @@ export default class AndroidToolbar extends Component {
 	render(){
 		return (
 			<View>
-				<ToolbarAndroid
-					title="Issues"
-					style={styles.toolbar}
-					titleColor="#fff"
-					actions={[{title: 'Search', icon: require('./../images/search.png'), show: 'always'}]} />
 			</View>
 		)
 	}
