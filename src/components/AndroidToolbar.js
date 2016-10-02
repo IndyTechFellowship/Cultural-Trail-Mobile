@@ -4,15 +4,13 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	ToolbarAndroid
 } from 'react-native';
 
 export default class AndroidToolbar extends Component {
 	render(){
 		return (
-			<View>
-			</View>
-		)
+			<View>Hey party people!</View>
+		);
 	}
 }
 
@@ -21,4 +19,4 @@ var styles = StyleSheet.create({
 		backgroundColor: '#014C7F',
 		height: 56
 	},
-})
+});
