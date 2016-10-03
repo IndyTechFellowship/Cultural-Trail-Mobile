@@ -12,7 +12,7 @@ import {
 import ActionButton from 'react-native-action-button';
 
 import IssueCard from './IssueCard.js';
-import AndroidToolbar from './AndroidToolbar.js';
+import Toolbar from './Toolbar.js';
 import Icon from 'react-native-vector-icons/Ionicons';
 import storage from 'react-native-simple-store';
 
@@ -37,7 +37,7 @@ export default class IssuesScene extends Component {
     if(hasIssues) {
       return (
         <View style={styles.container}>
-          <AndroidToolbar />
+          <Toolbar />
           <ListView
             style={styles.listview}
             dataSource={ds.cloneWithRows(this.props.issuesResponse.data)}
@@ -51,7 +51,7 @@ export default class IssuesScene extends Component {
     } else {
       return (
         <View style={styles.container}>
-          <AndroidToolbar />
+          <Toolbar />
         </View>
       )
     }
