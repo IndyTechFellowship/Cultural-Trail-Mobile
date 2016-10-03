@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import {
 	StyleSheet,
+	TabBarIOS,
 	Text,
 	View,
 } from 'react-native';
@@ -9,7 +10,22 @@ import {
 export default class AndroidToolbar extends Component {
 	render(){
 		return (
-			<View>Hey party people!</View>
+			<View>
+				<TabBarIOS
+					unselectedTintColor="yellow"
+					tintColor="white"
+					barTintColor="#014C7F"
+					style={styles.toolbar}>
+
+					<TabBarIOS.Item
+						systemIcon="search" >
+					</TabBarIOS.Item>
+
+					<TabBarIOS.Item
+						title="Tab 2" >
+					</TabBarIOS.Item>
+				</TabBarIOS>
+			</View>
 		);
 	}
 }
