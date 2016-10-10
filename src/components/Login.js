@@ -5,7 +5,7 @@ import {
 	Image,
  	Text,
  	TextInput,
-  View,
+ 	View,
 	TouchableHighlight,
 	KeyboardAvoidingView,
 } from 'react-native';
@@ -34,7 +34,6 @@ class RenderResponse extends React.Component {
   render() {
       const responseExists = this.props.response !== null
       if(responseExists) {
-
         const hasEmailError = _.has(this.props.response, 'errors.email')
         const hasError = _.has(this.props.response, 'error')
         const hasData = _.has(this.props.response, 'data')
@@ -64,7 +63,6 @@ class RenderResponse extends React.Component {
 }
 
 class LoginForm extends Component {
-
 	render(){
 		return(
 			<View>
@@ -85,29 +83,30 @@ class LoginForm extends Component {
 	}
 }
 
-LoginForm = reduxForm({
-  form: 'RegisterForm',
-})(LoginForm)
-
 export default class LoginScene extends Component {
 
 	render(){
 		return (
 			<Container theme={myTheme}>
 				<View style={styles.container}>
-
-					<Image
-						style={styles.headerImage}
-	          source={require('../images/ict-logo.png')}
-	        />
-
-				<LoginForm onShowRegisterButtonClicked={this.props.onShowRegisterButtonClicked} onSubmit={values => {this.props.submitLogin(values)}} registerResponse={this.props.loginResponse}/>
-
+				<Image
+					style={styles.headerImage}
+					source={require('../images/ict-logo.png')}
+					/>
+				<LoginForm 
+					onShowRegisterButtonClicked={this.props.onShowRegisterButtonClicked} 
+					onSubmit={values => {this.props.submitLogin(values)}} 
+					registerResponse={this.props.loginResponse}
+					/>
 				</View>
 			</Container>
 		)
 	}
 }
+
+LoginForm = reduxForm({
+  form: 'RegisterForm',
+})(LoginForm)
 
 LoginScene.propTypes = {
 	showRegister: React.PropTypes.bool.isRequired,
@@ -130,9 +129,9 @@ const styles = StyleSheet.create({
 		flex: 0
 	},
 	headerImage: {
-		width: 400,
-    height: 400,
-    alignItems: 'center'
+		width: 375,
+    	height: 375,
+    	alignItems: 'center'
 	},
 
 	buttonContainer: {
@@ -152,5 +151,4 @@ const styles = StyleSheet.create({
 		width:175,
 		left:10
 	}
-
 })
