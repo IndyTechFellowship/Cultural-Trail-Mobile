@@ -1,7 +1,8 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-  issuesResponse: null
+  issuesResponse: null,
+  singleIssueClicked: null
 };
 
 export default function counter(state = initialState, action = {}) {
@@ -11,7 +12,13 @@ export default function counter(state = initialState, action = {}) {
       return {
         ...state,
         issuesResponse: action.payload
-      }
+      };
+
+    case types.GO_TO_SINGLE_ISSUE_CLICKED:
+      return {
+          ...state,
+          singleIssueClicked: action.payload
+      };
 
     default:
       return state;

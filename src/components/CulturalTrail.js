@@ -33,6 +33,7 @@ export default class CulturalTrail extends Component {
           <Scene key="issues" component={IssuesContainer} title="Issues" hideNavBar={true}/>
           <Scene key="splash" component={SplashScreenScene} tile="Splash" initial={true} hideNavBar={true}/>
           <Scene key="register" component={RegisterScene} hideNavBar={false}/>
+          {/*<Scene key="singleIssue" component={SingleIssueScene} title="SingleIssue" />*/}
         </Router>
       )
     }
