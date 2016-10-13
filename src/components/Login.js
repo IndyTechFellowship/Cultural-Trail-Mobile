@@ -18,9 +18,9 @@ import myTheme from '../themes/myTheme'
 
 class renderInput extends React.Component {
   render() {
-    const isPassword = (this.props.name === "password" || this.props.name === "passwordConfirm") ? true: false
+    const isPassword = (this.props.name === "Password" || this.props.name === "passwordConfirm") ? true: false
     return (
-      <View >
+      <View>
         <TextInput {...this.props.input} secureTextEntry={isPassword} type={this.props.type} placeholder={this.props.name} style={styles.textInput}/>
         {this.props.meta.touched &&
          this.props.meta.error &&
@@ -65,26 +65,25 @@ class RenderResponse extends React.Component {
 class LoginForm extends Component {
 	render(){
 		return(
-			<View>
+			<View style={styles.formContainer}>
 				<KeyboardAvoidingView>
-					<Field name="email" component={renderInput} type="text" />
-					<Field name="password" component={renderInput} type="text" />
-			</KeyboardAvoidingView>
-			<View style={styles.buttonContainer}>
+					<Field name="Email" component={renderInput} type="text"/>
+					<Field name="Password" component={renderInput} type="text" />
+				</KeyboardAvoidingView>
+				<View style={styles.buttonContainer}>
 					<Button style={styles.loginButtonStyle} onPress={this.props.handleSubmit}>
-					Login
-				</Button>
-				<Button style={styles.registerButtonStyle} onPress={this.props.onShowRegisterButtonClicked}>
-					Register
-				</Button>
+						Login
+					</Button>
+					<Button style={styles.registerButtonStyle} onPress={this.props.onShowRegisterButtonClicked}>
+						Register
+					</Button>
+				</View>
 			</View>
-		</View>
 		)
 	}
 }
 
 export default class LoginScene extends Component {
-
 	render(){
 		return (
 			<Container theme={myTheme}>
@@ -122,24 +121,27 @@ const styles = StyleSheet.create({
 	},
 	textInput: {
 		height: 40,
-		borderColor: 'gray',
-		borderWidth: 1,
-		paddingLeft: 130,
-		paddingRight: 75,
-		flex: 0
+		paddingLeft: 15,
+    	borderColor: '#e7e7e7',
+    	borderWidth: 1,
+    	borderRadius: 4,
+    	marginBottom: 5, 
+		flex: 0,
 	},
 	headerImage: {
 		width: 375,
     	height: 375,
     	alignItems: 'center'
 	},
-
 	buttonContainer: {
 		flex:-1,
 		flexDirection:'row',
 		justifyContent: 'center'
 	},
-
+	formContainer: {
+    	paddingLeft: 35,
+    	paddingRight: 35,
+  	},
 	loginButtonStyle: {
 		backgroundColor: '#014C7F',
 		width:175,
