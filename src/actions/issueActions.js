@@ -31,11 +31,6 @@ export const getIssues = () => {
        )
     })
    }
-};
+}
 
-export const singleIssueClicked = (issue) => {
 
-    return (dispatch) => {
-        console.log("issue action: single issue clicked!: " + issue.title);
-    }
-};

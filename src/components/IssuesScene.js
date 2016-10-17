@@ -38,7 +38,7 @@ export default class IssuesScene extends Component {
             renderRow={this._renderRow} />
           <ActionButton
               buttonColor="#98B82A"
-              onPress={() => { console.log("hi")}}
+              onPress={this.props.addNewIssueClicked}
           />
         </View>
       )
@@ -55,7 +55,6 @@ export default class IssuesScene extends Component {
 		return (
 			<View>
 				<IssueCard
-                    onPress={() => {this.props.onSingleIssueClicked(rowData)}}
                     cardImage={rowData.imageUrl}
                     issueTitle={rowData.name}
                     issueDescription={rowData.description}
@@ -64,11 +63,6 @@ export default class IssuesScene extends Component {
 		)
 	}
 }
-
-
-IssueCard.propTypes = {
-    onSingleIssueClicked: React.PropTypes.func.isRequired
-};
 
 var styles = StyleSheet.create({
 	container: {
