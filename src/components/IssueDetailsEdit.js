@@ -10,29 +10,17 @@ import {
     PickerIOS
 } from 'react-native';
 
-import { Icon } from 'react-native-material-design';
+import { Icon, Divider } from 'react-native-material-design';
 
 import { reduxForm, Field } from 'redux-form'
 import Toolbar from './Toolbar';
-
-const PickerItemIOS = PickerIOS.Item;
-
-const PRIORITY_TYPES = {
-    high: {
-        displayName: 'High Priority'
-    },
-    medium: {
-        displayName: 'Medium Priority'
-    },
-    low: {
-        displayName: 'Low Priority'
-    }
-};
 
 class IssueDetailsForm extends Component {
     render() {
         return (
             <View>
+
+                <Text style={styles.tinyLabel}>Issues</Text>
 
                 <TextInput
                     style={styles.issueTitle}
@@ -40,11 +28,26 @@ class IssueDetailsForm extends Component {
                     value={this.props.issueTitle}
                 />
 
+                <Divider style={styles.divider}/>
+
+                <Text style={styles.tinyLabel}>More Details</Text>
+
                 <TextInput
                     style={styles.issueDescription}
                     placeholder="Issue Description"
                     value={this.props.issueDescription}
                 />
+
+                <Divider style={styles.divider}/>
+
+                <Text style={styles.tinyLabel}>Location</Text>
+
+                <Divider style={styles.divider}/>
+
+                <Text style={styles.tinyLabel}>Priority</Text>
+
+                <Divider style={styles.divider}/>
+
 
                 {/*<MapView*/}
                     {/*style={styles.map}*/}
@@ -77,14 +80,15 @@ export default class IssueDetailsEdit extends Component {
         return (
             <View style={styles.container}>
                 <Toolbar />
-                <Image
-                    resizeMode="contain"
-                    source={{uri: 'http://cdn3-www.cattime.com/assets/uploads/2011/08/best-kitten-names-1.jpg'}}
-                    style={styles.image} />
+                <View style={styles.innerContainer}>
+                    {/*<Image*/}
+                        {/*resizeMode="contain"*/}
+                        {/*source={{uri: 'http://cdn3-www.cattime.com/assets/uploads/2011/08/best-kitten-names-1.jpg'}}*/}
+                        {/*style={styles.image} />*/}
 
-                <IssueDetailsForm/>
-                <Icon name="menu"/>
-
+                    <IssueDetailsForm/>
+                    {/*<Icon name="menu"/>*/}
+                </View>
             </View>
         )
     }
@@ -93,6 +97,16 @@ export default class IssueDetailsEdit extends Component {
 var styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    innerContainer: {
+        padding: 20
+    },
+    divider: {
+        marginVertical: 20,
+        borderRadius: 10
+    },
+    tinyLabel: {
+        fontSize: 14
     },
     image: {
         position: 'absolute',
@@ -103,12 +117,14 @@ var styles = StyleSheet.create({
     },
     issueTitle: {
         height: 40,
-        fontSize: 24
+        fontSize: 24,
+        paddingVertical: 10
     },
 
     issueDescription: {
         height: 40,
-        fontSize: 18
+        fontSize: 18,
+        paddingVertical: 10
     },
 
     map: {
