@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 import {Actions, Scene, Router, Switch} from 'react-native-router-flux'
 
 import IssuesContainer from '../containers/IssuesContainer'
-import SingleIssueContainer from '../containers/SingleIssueContainer';
+import IssueDetailsContainer from '../containers/IssueDetailsContainer';
 import LoginScene from '../containers/LoginContainer'
 import RegisterScene from '../containers/RegisterContainer'
 import SplashScreenScene from '../containers/SplashScreenContainer'
@@ -34,7 +34,7 @@ export default class CulturalTrail extends Component {
           <Scene key="issues" component={IssuesContainer} title="Issues" hideNavBar={true}/>
           <Scene key="splash" component={SplashScreenScene} tile="Splash" initial={true} hideNavBar={true}/>
           <Scene key="register" component={RegisterScene} hideNavBar={false}/>
-          <Scene key="singleIssue" component={SingleIssueContainer} title="Single Issue" hideNavBar={true}/>
+          <Scene key="editIssue" component={IssueDetailsContainer} title="Edit Issue" hideNavBar={true}/>
         </Router>
       )
     }

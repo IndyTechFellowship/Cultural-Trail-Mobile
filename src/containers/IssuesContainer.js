@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     addNewIssueClicked: () => {
       console.log('new issue clicked');
-      Actions.singleIssue();
+      Actions.editIssue();
     }
   }
 }

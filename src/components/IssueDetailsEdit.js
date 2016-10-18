@@ -10,6 +10,8 @@ import {
     PickerIOS
 } from 'react-native';
 
+import { Icon } from 'react-native-material-design';
+
 import { reduxForm, Field } from 'redux-form'
 import Toolbar from './Toolbar';
 
@@ -31,6 +33,7 @@ class IssueDetailsForm extends Component {
     render() {
         return (
             <View>
+
                 <TextInput
                     style={styles.issueTitle}
                     placeholder="Issue Title"
@@ -63,7 +66,7 @@ IssueDetailsForm = reduxForm({
     form: 'IssueDetailsForm'
 })(IssueDetailsForm);
 
-export default class SingleIssueScene extends Component {
+export default class IssueDetailsEdit extends Component {
     constructor(props) {
         super(props);
         console.log('single issue props')
@@ -80,6 +83,8 @@ export default class SingleIssueScene extends Component {
                     style={styles.image} />
 
                 <IssueDetailsForm/>
+                <Icon name="menu"/>
+
             </View>
         )
     }

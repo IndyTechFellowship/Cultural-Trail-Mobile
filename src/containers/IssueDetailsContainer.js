@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import SingleIssueScene from '../components/SingleIssueScene';
+import IssueDetailsEdit from '../components/IssueDetailsEdit';
 
 const mapStateToProps = (state, ownProps) => {
     console.log("Single Issue State");
@@ -12,9 +12,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {};
 };
 
-const SingleIssueContainer = connect(
+const IssueDetailsContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(SingleIssueScene);
+)(IssueDetailsEdit);
 
-export default SingleIssueContainer;
+export default IssueDetailsContainer;
