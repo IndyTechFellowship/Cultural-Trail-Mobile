@@ -42,7 +42,7 @@ class RenderResponse extends React.Component {
         if(hasEmailError) {
           return(
             <Text>
-              That email has already been used. Try signing in.
+              That email has already been registered.
             </Text>
           )
         } else if(hasData) {
@@ -57,10 +57,16 @@ class RenderResponse extends React.Component {
               {this.props.response.error}
             </Text>
           )
+        } else {
+          return(
+            <Text></Text>
+          )
         }
       } else {
-        return(null)
-    }
+        return(
+          <Text></Text>
+        )
+      }
   }
 }
 
@@ -68,17 +74,16 @@ class RegisterForm extends Component {
 	render(){
 		return(
 			<View style={styles.formContainer}>
-          <Field name="Name" component={renderInput} type="text" />
-          <Field name="Email" component={renderInput} type="text" />
-          <Field name="Password" component={renderInput} type="text" />
-          <Field name="Confirm Password" component={renderInput} type="text" />
-
+        <RenderResponse style={styles.renderResponse} response={this.props.registerResponse} />
+        <Field name="Name" component={renderInput} type="text" />
+        <Field name="Email" component={renderInput} type="text" />
+        <Field name="Password" component={renderInput} type="text" />
+        <Field name="Confirm Password" component={renderInput} type="text" />
         <View style={{flex:1, flexDirection:'row', justifyContent:'center'}}>
   				<Button style={styles.registerButtonStyle} onPress={this.props.handleSubmit}>
   					Register
   				</Button>
         </View>
-        <RenderResponse response={this.props.registerResponse} />
 			</View>
 		)
 	}
@@ -88,13 +93,13 @@ export default class RegisterScene extends Component {
 	render(){
 		return (
 			<Container theme={myTheme}>
-      <KeyboardAwareScrollView style={styles.container}>
-				<Image
-          style={styles.headerImage}
-	        source={require('../images/ict-logo.png')}
-	        />
-        <RegisterForm onSubmit={values => {this.props.submitRegister(values)}} registerResponse={this.props.registerResponse}/>
-      </KeyboardAwareScrollView>
+        <View style={styles.container}>
+				  <Image
+             style={styles.headerImage}
+	           source={require('../images/ict-logo.png')}
+	         />
+          <RegisterForm onSubmit={values => {this.props.submitRegister(values)}} registerResponse={this.props.registerResponse}/>
+        </View>
 			</Container>
 		)
 	}
@@ -152,8 +157,8 @@ const styles = StyleSheet.create({
 	},
 	headerImage: {
     width: 375,
-      height: 375,
-      alignItems: 'center'
+    height: 375,
+    alignItems: 'center'
   },
 	buttonContainer: {
 		flex:-1,
@@ -165,8 +170,10 @@ const styles = StyleSheet.create({
     paddingRight: 35,
   },
 	registerButtonStyle: {
-    top:60,
     width:350,
 		backgroundColor: '#A2C02F',
-	}
+	},
+  renderResponse: {
+    height: 35,
+  }
 })
