@@ -16,20 +16,14 @@ import Toolbar from './Toolbar.js';
 import Icon from 'react-native-vector-icons/Ionicons';
 import storage from 'react-native-simple-store';
 
-let fakeData = require('./../data/data.json');
 let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class IssuesScene extends Component {
 	constructor(props){
 		super(props);
-    if(props.issuesResponse === null){
-      props.getIssues()
-    }
-    /*
-		this.state = {
-			data: ds.cloneWithRows(this.props.issuesResponse.data)
-		};
-    */
+        if(props.issuesResponse === null){
+          props.getIssues()
+        }
 	}
 
 	render(){
@@ -60,7 +54,11 @@ export default class IssuesScene extends Component {
 	_renderRow(rowData){
 		return (
 			<View>
-				<IssueCard cardImage="http://placehold.it/350x150" issueTitle={rowData.name} issueDescription={rowData.description} issueAddress="Something" />
+				<IssueCard
+                    cardImage={rowData.imageUrl}
+                    issueTitle={rowData.name}
+                    issueDescription={rowData.description}
+                    issueAddress="TBD" />
 			</View>
 		)
 	}

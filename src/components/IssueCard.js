@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  ToolbarAndroid,
   Image
 } from 'react-native';
 
@@ -18,7 +17,7 @@ export default class IssueCard extends Component {
 					<Card.Media
 						image={<Image 
 									resizeMode="stretch" 
-									source={{uri: 'http://placehold.it/350x150' }}
+									source={{uri: this.props.cardImage }}
 									style={styles.cardImage} />}
 						children={<Text style={styles.cardImageText}>{this.props.issueTitle}</Text>}
 					/>
@@ -45,6 +44,7 @@ var styles = StyleSheet.create({
 	},
 	cardImageText: {
 		color: '#fff',
+		backgroundColor: 'transparent',
 		fontSize: 24,
 	},
 	cardBodyText: {
