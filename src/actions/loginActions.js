@@ -33,13 +33,15 @@ export const getAuthToken = () => {
 }
 
 export const submitLogin = (LoginFormData) => {
+  console.log(JSON.stringify(LoginFormData))
   const postBody = {
     user: {
-      name: LoginFormData.name,
-      email: LoginFormData.email,
-      password: LoginFormData.password
+      name: LoginFormData.Name,
+      email: LoginFormData.Email,
+      password: LoginFormData.Password
     }
   }
+  console.log(JSON.stringify(postBody))
 
   var myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
@@ -54,11 +56,11 @@ export const submitLogin = (LoginFormData) => {
       })
      .then(response => response.json())
      .then(json => {
+      console.log(JSON.stringify(json))
        const hasToken = _.has(json, 'data.token')
        if(hasToken) {
          storage.save('token', json.data.token)
          dispatch(getAuthToken())
-         //Actions.issues()
        }
        dispatch(receiveLoginResponse(json))
     })

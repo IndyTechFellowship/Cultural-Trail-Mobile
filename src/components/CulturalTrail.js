@@ -19,22 +19,6 @@ import {doAuthToken, receiveAuthToken} from '../actions/loginActions'
 
 import storage from 'react-native-simple-store';
 
-/*
-<Scene
-  key="root"
-  component={connect(state=>({profile:state.loginReducer.authToken}))(Switch)}
-  tabs={true}
-  unmountScenes
-  selector={(props)=> {console.log(props); return props.profile ? "issues" : "splash"}}
-  >
-  <Scene key="login" component={LoginScene} title="Login" hideNavBar={true}/>
-  <Scene key="issues" component={IssuesContainer} title="Issues" hideNavBar={true}/>
-  <Scene key="splash" component={SplashScreenScene} tile="Splash" hideNavBar={true}/>
-</Scene>
-
-
-*/
-
 export default class CulturalTrail extends Component {
 
     constructor(props){
@@ -48,7 +32,7 @@ export default class CulturalTrail extends Component {
           <Scene key="login" component={LoginScene} title="Login" hideNavBar={true}/>
           <Scene key="issues" component={IssuesContainer} title="Issues" hideNavBar={true}/>
           <Scene key="splash" component={SplashScreenScene} tile="Splash" initial={true} hideNavBar={true}/>
-          <Scene key="register" component={RegisterScene} hideNavBar={true}/>
+          <Scene key="register" component={RegisterScene} hideNavBar={false}/>
         </Router>
       )
     }

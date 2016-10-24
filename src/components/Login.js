@@ -5,7 +5,7 @@ import {
 	Image,
  	Text,
  	TextInput,
-  View,
+ 	View,
 	TouchableHighlight,
 	KeyboardAvoidingView,
 } from 'react-native';
@@ -18,9 +18,9 @@ import myTheme from '../themes/myTheme'
 
 class renderInput extends React.Component {
   render() {
-    const isPassword = (this.props.name === "password" || this.props.name === "passwordConfirm") ? true: false
+    const isPassword = (this.props.name === "Password" || this.props.name === "passwordConfirm") ? true: false
     return (
-      <View >
+      <View>
         <TextInput {...this.props.input} secureTextEntry={isPassword} type={this.props.type} placeholder={this.props.name} style={styles.textInput}/>
         {this.props.meta.touched &&
          this.props.meta.error &&
@@ -34,7 +34,6 @@ class RenderResponse extends React.Component {
   render() {
       const responseExists = this.props.response !== null
       if(responseExists) {
-
         const hasEmailError = _.has(this.props.response, 'errors.email')
         const hasError = _.has(this.props.response, 'error')
         const hasData = _.has(this.props.response, 'data')
@@ -64,23 +63,42 @@ class RenderResponse extends React.Component {
 }
 
 class LoginForm extends Component {
-
 	render(){
 		return(
-			<View>
+			<View style={styles.formContainer}>
 				<KeyboardAvoidingView>
-					<Field name="email" component={renderInput} type="text" />
-					<Field name="password" component={renderInput} type="text" />
-			</KeyboardAvoidingView>
-			<View style={styles.buttonContainer}>
+					<Field name="Email" component={renderInput} type="text"/>
+					<Field name="Password" component={renderInput} type="text" />
+				</KeyboardAvoidingView>
+				<View style={styles.buttonContainer}>
 					<Button style={styles.loginButtonStyle} onPress={this.props.handleSubmit}>
-					Login
-				</Button>
-				<Button style={styles.registerButtonStyle} onPress={this.props.onShowRegisterButtonClicked}>
-					Register
-				</Button>
+						Login
+					</Button>
+					<Button style={styles.registerButtonStyle} onPress={this.props.onShowRegisterButtonClicked}>
+						Register
+					</Button>
+				</View>
 			</View>
-		</View>
+		)
+	}
+}
+
+export default class LoginScene extends Component {
+	render(){
+		return (
+			<Container theme={myTheme}>
+				<View style={styles.container}>
+				<Image
+					style={styles.headerImage}
+					source={require('../images/ict-logo.png')}
+					/>
+				<LoginForm 
+					onShowRegisterButtonClicked={this.props.onShowRegisterButtonClicked} 
+					onSubmit={values => {this.props.submitLogin(values)}} 
+					registerResponse={this.props.loginResponse}
+					/>
+				</View>
+			</Container>
 		)
 	}
 }
@@ -88,26 +106,6 @@ class LoginForm extends Component {
 LoginForm = reduxForm({
   form: 'RegisterForm',
 })(LoginForm)
-
-export default class LoginScene extends Component {
-
-	render(){
-		return (
-			<Container theme={myTheme}>
-				<View style={styles.container}>
-
-					<Image
-						style={styles.headerImage}
-	          source={require('../images/ict-logo.png')}
-	        />
-
-				<LoginForm onShowRegisterButtonClicked={this.props.onShowRegisterButtonClicked} onSubmit={values => {this.props.submitLogin(values)}} registerResponse={this.props.loginResponse}/>
-
-				</View>
-			</Container>
-		)
-	}
-}
 
 LoginScene.propTypes = {
 	showRegister: React.PropTypes.bool.isRequired,
@@ -123,24 +121,27 @@ const styles = StyleSheet.create({
 	},
 	textInput: {
 		height: 40,
-		borderColor: 'gray',
-		borderWidth: 1,
-		paddingLeft: 130,
-		paddingRight: 75,
-		flex: 0
+		paddingLeft: 15,
+    	borderColor: '#e7e7e7',
+    	borderWidth: 1,
+    	borderRadius: 4,
+    	marginBottom: 5, 
+		flex: 0,
 	},
 	headerImage: {
-		width: 400,
-    height: 400,
-    alignItems: 'center'
+		width: 375,
+    	height: 375,
+    	alignItems: 'center'
 	},
-
 	buttonContainer: {
 		flex:-1,
 		flexDirection:'row',
 		justifyContent: 'center'
 	},
-
+	formContainer: {
+    	paddingLeft: 35,
+    	paddingRight: 35,
+  	},
 	loginButtonStyle: {
 		backgroundColor: '#014C7F',
 		width:175,
@@ -152,5 +153,4 @@ const styles = StyleSheet.create({
 		width:175,
 		left:10
 	}
-
 })

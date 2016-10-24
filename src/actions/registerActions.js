@@ -11,9 +11,9 @@ export const receiveRegisterResponse = (registerResponse) => {
 export const submitRegister = (RegisterFormData) => {
   const postBody = {
     user: {
-      name: RegisterFormData.name,
-      email: RegisterFormData.email,
-      password: RegisterFormData.password
+      name: RegisterFormData.Name,
+      email: RegisterFormData.Email,
+      password: RegisterFormData.Password
     }
   }
 
