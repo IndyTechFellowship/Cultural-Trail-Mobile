@@ -31,7 +31,7 @@ export default class IssuesScene extends Component {
     if(hasIssues) {
       return (
         <View style={styles.container}>
-          <Toolbar />
+          <Toolbar/>
           <ListView
             style={styles.listview}
             dataSource={ds.cloneWithRows(this.props.issuesResponse.data)}
