@@ -17,6 +17,12 @@ import { reduxForm, Field } from 'redux-form'
 import Toolbar from './Toolbar';
 
 class IssueDetailsForm extends Component {
+    constructor(props) {
+        super(props);
+        console.log('**********Issue Details Form***********');
+        console.log(props.dataSource);
+    }
+
     render() {
         return (
             <View>
@@ -69,28 +75,38 @@ export default class IssueDetailsEdit extends Component {
     constructor(props) {
         console.log('single issue props');
         console.log(props);
+        super(props);
         if (props.damagesResponse === null) {
             props.getDamages();
             console.log(props);
         }
-        super(props);
     }
 
     render() {
-        return (
-            <View style={styles.container}>
-                <Toolbar />
-                <View style={styles.innerContainer}>
-                    {/*<Image*/}
+        const hasDamages = this.props.damagesResponse !== null;
+        if (hasDamages) {
+            return (
+                <View style={styles.container}>
+                    <Toolbar />
+                    <View style={styles.innerContainer}>
+                        {/*<Image*/}
                         {/*resizeMode="contain"*/}
                         {/*source={{uri: 'http://cdn3-www.cattime.com/assets/uploads/2011/08/best-kitten-names-1.jpg'}}*/}
                         {/*style={styles.image} />*/}
 
-                    <IssueDetailsForm/>
-                    {/*<Icon name="menu"/>*/}
+                        <IssueDetailsForm dataSource={this.props.damagesResponse.data}/>
+                        {/*<Icon name="menu"/>*/}
+                    </View>
                 </View>
-            </View>
-        )
+            )
+        } else {
+            return (
+                // TODO: handle else case
+                <View style={styles.container}>
+                    <Toolbar />
+                </View>
+            )
+        }
     }
 }
 
