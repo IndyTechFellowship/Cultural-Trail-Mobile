@@ -6,6 +6,7 @@ import {
     TabBarIOS,
     Text,
     View,
+    StatusBar
 } from 'react-native';
 
 export default class Toolbar extends Component {
@@ -13,20 +14,12 @@ export default class Toolbar extends Component {
         if (Platform.OS === 'ios') {
             return (
                 <View>
-                    <TabBarIOS
-                    unselectedTintColor="yellow"
-                    tintColor="white"
-                    barTintColor="#014C7F"
-                    style={styles.toolbar}>
-
-                        <TabBarIOS.Item
-                            systemIcon="search" >
-                        </TabBarIOS.Item>
-
-                        <TabBarIOS.Item
-                            title="Tab 2" >
-                        </TabBarIOS.Item>
-                    </TabBarIOS>
+                    <StatusBar
+                        barStyle="default"
+                        />
+                    <View style={styles.toolbar}>
+                        <Text style={styles.toolbarTitle}>Issues</Text>
+                    </View>
                 </View>
         );
         } else if (Platform.OS === 'android') {
@@ -40,13 +33,19 @@ export default class Toolbar extends Component {
                 </View>
             );
         }
-
     }
 }
 
 var styles = StyleSheet.create({
     toolbar : {
         backgroundColor: '#014C7F',
-        height: 56
+        height: 56,
+        alignItems: 'center'
     },
+    toolbarTitle : {
+        top: 20,
+        alignItems: 'center',
+        fontSize: 20,
+        color: '#fff'
+    }
 });
