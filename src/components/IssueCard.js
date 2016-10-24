@@ -24,10 +24,6 @@ export default class IssueCard extends Component {
 					<Card.Body>
                         <Text style={styles.cardBodyText}>{this.props.issueDescription}</Text> 
                     </Card.Body>
-                    <Divider />
-                    <Card.Actions position="right">
-                        <Button text={this.props.issueAddress} />
-                    </Card.Actions>
 				</Card>
 			</View>
 		)
