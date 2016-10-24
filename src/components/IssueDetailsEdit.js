@@ -7,7 +7,8 @@ import {
     TextInput,
     Image,
     MapView,
-    PickerIOS
+    PickerIOS,
+    TouchableHighlight
 } from 'react-native';
 
 import { Icon, Divider } from 'react-native-material-design';
@@ -20,32 +21,27 @@ class IssueDetailsForm extends Component {
         return (
             <View>
 
-                <Text style={styles.tinyLabel}>Issues</Text>
+                <Text style={styles.tinyLabel}>Issue</Text>
+                <Text style={styles.details}>Select Issue Type</Text>
+                <TouchableHighlight overlayColor="white" onPress={() => console.log('hey')}>
+                    <View style={styles.buttonWrapper}><Icon name="chevron-right" color="#000000"  /></View>
+                </TouchableHighlight>
+                <Divider style={styles.divider}/>
 
-                <TextInput
-                    style={styles.issueTitle}
-                    placeholder="Issue Title"
-                    value={this.props.issueTitle}
-                />
-
+                <Text style={styles.tinyLabel}>Damages</Text>
+                <Text style={styles.details}>Select Damage Type</Text>
+                <TouchableHighlight overlayColor="white" onPress={() => console.log('hey')}>
+                    <View style={styles.buttonWrapper}><Icon name="chevron-right" color="#000000"  /></View>
+                </TouchableHighlight>
                 <Divider style={styles.divider}/>
 
                 <Text style={styles.tinyLabel}>More Details</Text>
-
-                <TextInput
-                    style={styles.issueDescription}
-                    placeholder="Issue Description"
-                    value={this.props.issueDescription}
-                />
-
                 <Divider style={styles.divider}/>
 
                 <Text style={styles.tinyLabel}>Location</Text>
-
                 <Divider style={styles.divider}/>
 
                 <Text style={styles.tinyLabel}>Priority</Text>
-
                 <Divider style={styles.divider}/>
 
 
@@ -101,12 +97,30 @@ var styles = StyleSheet.create({
     innerContainer: {
         padding: 20
     },
+    inputContainer: {
+        alignItems: 'stretch'
+    },
     divider: {
-        marginVertical: 20,
+        marginVertical: 16,
         borderRadius: 10
     },
     tinyLabel: {
-        fontSize: 14
+        color: '#696969',
+        fontSize: 12,
+        paddingVertical: 16,
+    },
+    buttonWrapper: {
+        backgroundColor: '#ffffff'
+    },
+    details: {
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: 14,
+        paddingLeft: 12
+    },
+    iconArrow: {
+        // color: '#000000',
+        justifyContent: 'flex-end'
     },
     image: {
         position: 'absolute',
