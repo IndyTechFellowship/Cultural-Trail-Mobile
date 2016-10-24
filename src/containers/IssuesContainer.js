@@ -6,7 +6,7 @@ import IssuesScene from '../components/IssuesScene'
 const mapStateToProps = (state, ownProps) => {
   console.log(state)
   return {
-    issuesResponse: state.issuesReducer.issuesResponse,
+    issuesResponse: state.issuesReducer.issuesResponse
   }
 }
 

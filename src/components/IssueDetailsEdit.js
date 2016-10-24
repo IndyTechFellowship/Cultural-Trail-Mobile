@@ -67,9 +67,13 @@ IssueDetailsForm = reduxForm({
 
 export default class IssueDetailsEdit extends Component {
     constructor(props) {
-        super(props);
-        console.log('single issue props')
+        console.log('single issue props');
         console.log(props);
+        if (props.damagesResponse === null) {
+            props.getDamages();
+            console.log(props);
+        }
+        super(props);
     }
 
     render() {
