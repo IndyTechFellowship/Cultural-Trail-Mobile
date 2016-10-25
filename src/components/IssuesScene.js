@@ -38,7 +38,7 @@ export default class IssuesScene extends Component {
             renderRow={this._renderRow} />
           <ActionButton
               buttonColor="#98B82A"
-              onPress={() => { console.log("hi")}}
+              onPress={this.props.addNewIssueClicked}
           />
         </View>
       )

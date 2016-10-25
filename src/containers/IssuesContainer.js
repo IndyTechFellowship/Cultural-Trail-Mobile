@@ -6,7 +6,7 @@ import IssuesScene from '../components/IssuesScene'
 const mapStateToProps = (state, ownProps) => {
   console.log(state)
   return {
-    issuesResponse: state.issuesReducer.issuesResponse,
+    issuesResponse: state.issuesReducer.issuesResponse
   }
 }
 
@@ -15,6 +15,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getIssues: () => {
       console.log('get')
       dispatch(getIssues())
+    },
+
+    addNewIssueClicked: () => {
+      console.log('new issue clicked');
+      Actions.editIssue();
     }
   }
 }
