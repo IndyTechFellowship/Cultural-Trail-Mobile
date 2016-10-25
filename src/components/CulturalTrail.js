@@ -15,6 +15,7 @@ import IssuesContainer from '../containers/IssuesContainer'
 import LoginScene from '../containers/LoginContainer'
 import RegisterScene from '../containers/RegisterContainer'
 import SplashScreenScene from '../containers/SplashScreenContainer'
+import IssueDetailScene from '../containers/IssueDetailContainer'
 import {doAuthToken, receiveAuthToken} from '../actions/loginActions'
 
 import storage from 'react-native-simple-store';
@@ -33,6 +34,7 @@ export default class CulturalTrail extends Component {
           <Scene key="issues" component={IssuesContainer} title="Issues" hideNavBar={true}/>
           <Scene key="splash" component={SplashScreenScene} tile="Splash" initial={true} hideNavBar={true}/>
           <Scene key="register" component={RegisterScene} hideNavBar={false}/>
+          <Scene key="issueDetail" component={IssueDetailScene} hideNavBar={false} />
         </Router>
       )
     }
