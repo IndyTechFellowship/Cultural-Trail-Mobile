@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { getDamages } from '../actions/issueDetailsActions';
+import { getDamages, selectIssueType } from '../actions/issueDetailsActions';
 import IssueDetailsEdit from '../components/IssueDetailsEdit';
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         getDamages: () => {
             console.log('get damages');
             dispatch(getDamages());
+        },
+        onSelectIssueType: () => {
+            Actions.damages()
         }
     };
 };

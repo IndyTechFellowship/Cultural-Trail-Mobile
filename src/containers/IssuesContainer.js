@@ -13,12 +13,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getIssues: () => {
-      console.log('get')
       dispatch(getIssues())
     },
 
     addNewIssueClicked: () => {
-      console.log('new issue clicked');
       Actions.editIssue();
     }
   }

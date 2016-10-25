@@ -29,7 +29,7 @@ class IssueDetailsForm extends Component {
 
                 <Text style={styles.tinyLabel}>Issue</Text>
                 <Text style={styles.details}>Select Issue Type</Text>
-                <TouchableHighlight overlayColor="white" onPress={() => console.log('hey')}>
+                <TouchableHighlight overlayColor="white" onPress={this.props.onSelectIssueType}>
                     <View style={styles.buttonWrapper}><Icon name="chevron-right" color="#000000"  /></View>
                 </TouchableHighlight>
                 <Divider style={styles.divider}/>
@@ -94,7 +94,10 @@ export default class IssueDetailsEdit extends Component {
                         {/*source={{uri: 'http://cdn3-www.cattime.com/assets/uploads/2011/08/best-kitten-names-1.jpg'}}*/}
                         {/*style={styles.image} />*/}
 
-                        <IssueDetailsForm dataSource={this.props.damagesResponse.data}/>
+                        <IssueDetailsForm
+                            dataSource={this.props.damagesResponse.data}
+                            onSelectIssueType={this.props.onSelectIssueType}
+                        />
                         {/*<Icon name="menu"/>*/}
                     </View>
                 </View>
@@ -109,6 +112,10 @@ export default class IssueDetailsEdit extends Component {
         }
     }
 }
+
+IssueDetailsEdit.propTypes = {
+    onSelectIssueType: React.PropTypes.func.isRequired
+};
 
 var styles = StyleSheet.create({
     container: {
