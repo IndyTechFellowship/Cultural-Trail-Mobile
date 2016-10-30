@@ -24,19 +24,33 @@ export default class CT extends Component {
   renderScene(route, navigator) {
     switch(route.index) {
       case 0:
-        return <SplashScreenScene nav={navigator} />
-        break;
+        return <SplashScreenScene
+                  nav={navigator}
+                  {...route.passProps}
+               />
       case 1:
-        return <LoginScene title={route.title} nav={navigator} {...route.passProps} />
-        break;
+        return <LoginScene
+                  title={route.title}
+                  nav={navigator}
+                  {...route.passProps}
+              />
       case 2:
-        return <IssuesScene title={route.title} nav={navigator} />
-        break;
+        return <IssuesScene
+                  title={route.title}
+                  nav={navigator}
+                  {...route.passProps}
+               />
       case 3:
-        return <IssueDetailsScene title={route.title} nav={navigator} {...route.passProps} />
-        break;
+        return <IssueDetailsScene
+                  title={route.title}
+                  nav={navigator}
+                  {...route.passProps}
+               />
       default:
-        return <SplashScreenScene nav={navigator} />
+        return <SplashScreenScene
+                  nav={navigator} 
+                  {...route.passProps}
+               />
       }
   }
 

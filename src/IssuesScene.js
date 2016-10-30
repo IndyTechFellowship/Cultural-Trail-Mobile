@@ -9,20 +9,20 @@ export default class IssuesScene extends Component {
   constructor(props) {
     super(props);
     this.state = {issues: []};
-    this.fetchMovies = this.fetchMovies.bind(this)
+    this.fetchIssues = this.fetchIssues.bind(this)
+    this.logOut = this.logOut.bind(this)
   }
 
-  fetchMovies() {
-    var self = this;
-    var myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+  fetchIssues() {
     AsyncStorage.getItem('token').then((value) => {
+      var myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
       myHeaders.append('api-token', `Token: ${value}`);
 
       fetch("http://ec2-52-206-122-212.compute-1.amazonaws.com/api/issues", {method: "GET", headers: myHeaders})
       .then((response) => response.json())
       .then((responseData) => {
-        self.setState({issues: responseData.data})
+        this.setState({issues: responseData.data})
       })
       .catch((error) => {
         console.error(error);
@@ -31,15 +31,32 @@ export default class IssuesScene extends Component {
     })
   }
 
+  logOut = async () => {
+    var self = this;
+    try {
+      AsyncStorage.removeItem('token').then(() => {
+        this.props.redirectRoute()
+      })
+    } catch (error) {
+      console.log('AsyncStorage error: ' + error.message);
+    }
+  }
+
   componentDidMount() {
-    this.fetchMovies()
+    this.fetchIssues()
   }
 
   render() {
     return (
       <Container>
           <Header>
+            <Button transparent>
+              <Text></Text>
+            </Button>
               <Title>Issues</Title>
+              <Button transparent>
+                  <Text onPress={this.logOut}>LOG OUT</Text>
+              </Button>
           </Header>
 
           <Content>
