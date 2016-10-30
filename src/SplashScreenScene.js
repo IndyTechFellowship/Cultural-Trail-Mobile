@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncStorage, View, Navigator } from 'react-native';
+import { AsyncStorage, Image, Navigator, StyleSheet, View } from 'react-native';
 import { Container, Content, Spinner } from 'native-base'
 
 export default class SplashScreenScene extends Component {
@@ -39,11 +39,21 @@ export default class SplashScreenScene extends Component {
 
   render() {
     return (
-      <Container>
-        <Content>
-          <Spinner />
-        </Content>
-      </Container>
+          <View style={styles.splashView}>
+            <Image style={styles.splashLogo} source={require('./img/ict-logo.png')} />
+            <Spinner />
+          </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  splashLogo: {
+    marginBottom: 20
+  },
+  splashView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
