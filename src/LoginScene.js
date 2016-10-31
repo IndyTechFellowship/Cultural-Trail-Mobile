@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { AsyncStorage, View, Text, Navigator, Image, StyleSheet, } from 'react-native';
-import { Container, Content, List, ListItem, InputGroup, Input, Button } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { AsyncStorage, Image, Navigator, StyleSheet, Text, View } from 'react-native';
+import { Button, Container, Content, Input, InputGroup, List, ListItem } from 'native-base';
+import { Col, Grid, Row } from 'react-native-easy-grid';
 
 export default class LoginScene extends Component {
 
@@ -23,6 +23,10 @@ export default class LoginScene extends Component {
   }
 
   userLogin = async () => {
+    const secrets = require('../secrets.json')
+    const baseUrl = secrets.baseUrl
+
+    // make API call
     var self = this;
     var myHeaders = new Headers();
     var body = JSON.stringify({
@@ -33,7 +37,7 @@ export default class LoginScene extends Component {
     })
     myHeaders.append('Content-Type', 'application/json');
 
-    fetch("http://ec2-52-206-122-212.compute-1.amazonaws.com/auth/login", {
+    fetch(`${baseUrl}/auth/login`, {
       method: "POST",
       headers: myHeaders,
       body: body
@@ -64,12 +68,18 @@ export default class LoginScene extends Component {
   }
 
   userRegister = async () => {
+    const secrets = require('../secrets.json')
+    const baseUrl = secrets.baseUrl
+
+    // check if password match
     if(this.state.password !== this.state.confirmPassword) {
       this.setState({
         errorMsg: "Passwords don't match"
       })
       return
     }
+
+    // make API call
     var self = this;
     var myHeaders = new Headers();
     var body = JSON.stringify({
@@ -81,14 +91,13 @@ export default class LoginScene extends Component {
     })
     myHeaders.append('Content-Type', 'application/json');
 
-    fetch("http://ec2-52-206-122-212.compute-1.amazonaws.com/auth", {
+    fetch(`${baseUrl}/auth`, {
       method: "POST",
       headers: myHeaders,
       body: body
     })
     .then((response) => response.json())
     .then((responseData) => {
-      debugger
       // check if something went wrong
       if(responseData.error || responseData.errors) {
         this.setState({

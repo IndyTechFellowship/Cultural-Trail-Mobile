@@ -39,10 +39,10 @@ export default class SplashScreenScene extends Component {
 
   render() {
     return (
-          <View style={styles.splashView}>
-            <Image style={styles.splashLogo} source={require('./img/ict-logo.png')} />
-            <Spinner />
-          </View>
+      <View style={styles.splashView}>
+        <Image style={styles.splashLogo} source={require('./img/ict-logo.png')} />
+        <Spinner />
+      </View>
     )
   }
 }

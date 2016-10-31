@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Image, Navigator, StyleSheet, View } from 'react-native';
+import { Image, Navigator, StyleSheet, Text, View } from 'react-native';
 import { Card, CardItem, Icon } from 'native-base';
 
 export default class IssueItem extends Component {
@@ -17,7 +17,8 @@ export default class IssueItem extends Component {
       title: this.props.title,
       index: 3,
       passProps: {
-        issue: this.props.issue
+        issue: this.props.issue,
+        address: this.state.address
       }
     });
   }
@@ -31,11 +32,10 @@ export default class IssueItem extends Component {
   }
 
   getAddress(lat, lng) {
-    this.setState({
-      address: "421 E Market St"
-    })
+    const secrets = require('../secrets.json')
+    const apiKey = secrets.googleMapsApiKey
 
-    const apiKey = "AIzaSyDu02M2GXzpZY7dt0eln8g3GuOlGvnWG-w"
+    // make API call
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
