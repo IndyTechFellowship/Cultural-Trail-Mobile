@@ -152,18 +152,19 @@ export default class LoginScene extends Component {
     return (
       <Container style={styles.container}>
           <Content>
-            <View style={styles.logoView}>
-              <Image style={{ resizeMode: 'cover' }} source={require('./img/ict-logo.png')} />
+            <View style={styles.imageView}>
+              <Image style={styles.image} source={require('./img/ict-logo.png')} />
             </View>
             { this.state.errorMsg ? <Text>{this.state.errorMsg}</Text> : null }
-            <List>
+            <List style={styles.listStyle}>
               {
                 this.state.register ?
                   <ListItem>
-                    <InputGroup>
-                      <Input stackedLabel
-                        label='Name'
-                        placeholder='John Smith'
+                    <InputGroup
+                      style={styles.inputGroupStyle}>
+                      <Input
+                      style={styles.inputStyle}
+                        placeholder='Name'
                         value={this.state.name}
                         onChangeText={this.setName} />
                     </InputGroup>
@@ -171,19 +172,21 @@ export default class LoginScene extends Component {
                 : null
               }
               <ListItem>
-                <InputGroup>
-                  <Input stackedLabel
-                    label='Email'
-                    placeholder='example@indyculturaltrail.org'
+                <InputGroup
+                  style={styles.inputGroupStyle}>
+                  <Input
+                    style={styles.inputStyle}
+                    placeholder='Email'
                     value={this.state.email}
                     onChangeText={this.setEmail} />
                 </InputGroup>
               </ListItem>
               <ListItem>
-                <InputGroup>
-                  <Input stackedLabel
-                    label='Password'
-                    placeholder='password'
+                <InputGroup 
+                style={styles.inputGroupStyle}>
+                  <Input
+                    style={styles.inputStyle}
+                    placeholder='Password'
                     secureTextEntry={true}
                     value={this.state.password}
                     onChangeText={this.setPassword}/>
@@ -192,10 +195,11 @@ export default class LoginScene extends Component {
               {
                 this.state.register ?
                   <ListItem>
-                    <InputGroup>
-                      <Input stackedLabel
-                        label='Confirm Password'
-                        placeholder='Password'
+                    <InputGroup
+                      style={styles.inputGroupStyle}>
+                      <Input
+                        style={styles.inputStyle}
+                        placeholder='Confirm Password'
                         secureTextEntry={true}
                         value={this.state.confirmPassword}
                         onChangeText={this.setConfirmPassword} />
@@ -204,14 +208,10 @@ export default class LoginScene extends Component {
                 : null
               }
             </List>
-            <Grid>
-              <Col>
-                <Button onPress={this.state.register ? this.toggleRegister : this.userLogin.bind(this)}>Login</Button>
-              </Col>
-              <Col>
-                <Button onPress={this.state.register ? this.userRegister.bind(this) : this.toggleRegister}>Register</Button>
-              </Col>
-            </Grid>
+            <View style={styles.buttonView}>
+              <Button style={styles.buttonStyle} onPress={this.state.register ? this.toggleRegister : this.userLogin.bind(this)}>Login</Button>
+              <Button style={styles.buttonStyle} onPress={this.state.register ? this.userRegister.bind(this) : this.toggleRegister}>Register</Button>
+            </View>
           </Content>
       </Container>
     )
@@ -220,9 +220,30 @@ export default class LoginScene extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    top: 100
+    flex: 1,
   },
-  logoView: {
-    height: 200
+  image: {
+    marginBottom: 100,
+    marginTop: 200,
   },
+  inputGroupStyle: {
+    marginLeft: 35,
+    marginRight: 55,
+  },
+  inputStyle: {
+    width: 200,
+  },
+  buttonView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  buttonStyle: {
+    width: 100,
+    margin: 2,
+  },
+  imageView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
